@@ -56,7 +56,7 @@ func (s *server) Shutdown() {
 
 // DebugInPacketLog implements msnet.CClientSocketDelegate.
 func (s *server) DebugInPacketLog(id int32, iPacket msnet.CInPacket) {
-	key := iPacket.GetType()
+	key := iPacket.GetTypeByte()
 	_, ok := opcode.NotLogCP[key]
 	if !ok {
 		slog.Info("[CInPacket]", "id", id, "length", iPacket.GetLength(), "opcode", opcode.CPMap[key], "data", iPacket.DumpString(-1))
@@ -65,7 +65,7 @@ func (s *server) DebugInPacketLog(id int32, iPacket msnet.CInPacket) {
 
 // DebugOutPacketLog implements msnet.CClientSocketDelegate.
 func (s *server) DebugOutPacketLog(id int32, oPacket msnet.COutPacket) {
-	key := oPacket.GetType()
+	key := oPacket.GetTypeByte()
 	_, ok := opcode.NotLogLP[key]
 	if !ok {
 		slog.Info("[COutPacket]", "id", id, "length", oPacket.GetLength(), "opcode", opcode.LPMap[key], "data", oPacket.DumpString(-1))
@@ -74,7 +74,7 @@ func (s *server) DebugOutPacketLog(id int32, oPacket msnet.COutPacket) {
 
 // ProcessPacket implements msnet.CClientSocketDelegate.
 func (s *server) ProcessPacket(cs msnet.CClientSocket, iPacket msnet.CInPacket) {
-	op := iPacket.Decode2()
+	op := iPacket.Decode1()
 	switch op {
 	default:
 		slog.Info("Unprocessed CInPacket", "opcode", fmt.Sprintf("0x%X", op))

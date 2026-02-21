@@ -24,9 +24,10 @@ const (
 func main() {
 	// Installation
 	msnet.New(&msnet.Setting{
-		MSRegion:       enum.GMS,
-		MSVersion:      95,
+		MSRegion:       enum.CMS,
+		MSVersion:      48,
 		MSMinorVersion: "1",
+		AESInitType:    enum.Duplicate,
 	})
 	// Set logger
 	done := make(chan bool, 1)
