@@ -49,7 +49,7 @@ type CClientSocket interface {
 	OnRead()
 	OnConnect()
 	OnAliveReq(LP_AliveReq uint16)
-	OnMigrateCommand(LP_MigrateCommand uint16, ip string, port int16)
+	OnMigrateCommand(LP_MigrateCommand uint16, ip string, port uint16)
 	SendPacket(oPacket COutPacket)
 	Flush()
 	OnError(err error)
@@ -92,9 +92,9 @@ type COutPacket interface {
 	GetOffset() int
 	GetLength() int
 	EncodeBool(b bool)
-	Encode1(n int8)
-	Encode2(n int16)
-	Encode4(n int32)
+	Encode1(n uint8)
+	Encode2(n uint16)
+	Encode4(n uint32)
 	Encode8(n int64)
 	EncodeFT(t time.Time)
 	EncodeStr(s string)

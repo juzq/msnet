@@ -4,15 +4,15 @@ const (
 	// LP_BEGIN_SOCKET
 	LP_CheckPasswordResult        = 0x0
 	LP_GuestIDLoginResult         = 0x1
-	LP_AccountInfoResult          = 0x2
-	LP_CheckUserLimitResult       = 0x3
+	LP_AccountInfoResult          = 0x2 // 选择性别
+	LP_CheckUserLimitResult       = 0x3 // 注册失败
 	LP_SetAccountResult           = 0x4
 	LP_ConfirmEULAResult          = 0x5
 	LP_CheckPinCodeResult         = 0x6
 	LP_UpdatePinCodeResult        = 0x7
 	LP_ViewAllCharResult          = 0x8
 	LP_SelectCharacterByVACResult = 0x9
-	LP_WorldInformation           = 0xA
+	LP_WorldInformation1          = 0xA // 弹注册窗口
 	LP_SelectWorldResult          = 0xB
 	LP_SelectCharacterResult      = 0xC
 	LP_CheckDuplicatedIDResult    = 0xD

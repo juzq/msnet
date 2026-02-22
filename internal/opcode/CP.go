@@ -11,7 +11,7 @@ const (
 	CP_ConfirmEULA                          = 0x7
 	CP_SetGender                            = 0x8
 	CP_CheckPinCode                         = 0x9
-	CP_UpdatePinCode                        = 0xA
+	CP_UpdatePinCode                        = 0xA // 报错信息
 	CP_WorldRequest                         = 0xB
 	CP_LogoutWorld                          = 0xC
 	CP_ViewAllChar                          = 0xD
