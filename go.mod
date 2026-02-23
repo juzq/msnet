@@ -1,4 +1,4 @@
-module github.com/zhyonc/msnet
+module github.com/juzq/msnet
 
 go 1.23.8
 
