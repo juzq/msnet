@@ -6,7 +6,7 @@ import (
 	"net"
 
 	"github.com/zhyonc/msnet"
-	"github.com/zhyonc/msnet/internal/opcode"
+	"github.com/zhyonc/msnet/opcode"
 	"github.com/zhyonc/msnet/setting"
 )
 

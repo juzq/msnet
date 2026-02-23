@@ -11,7 +11,7 @@ import (
 
 	"github.com/zhyonc/msnet"
 	"github.com/zhyonc/msnet/enum"
-	"github.com/zhyonc/msnet/internal/server"
+	"github.com/zhyonc/msnet/server"
 	"github.com/zhyonc/msnet/setting"
 )
 

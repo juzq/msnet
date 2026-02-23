@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/zhyonc/msnet/crypt"
 	"github.com/zhyonc/msnet/enum"
-	"github.com/zhyonc/msnet/internal/crypt"
 	"github.com/zhyonc/msnet/setting"
 )
 
