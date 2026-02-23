@@ -22,7 +22,7 @@ func NewCOutPacket(nType uint16) COutPacket {
 		SendBuff:            make([]byte, 0),
 		IsEncryptedByShanda: false,
 	}
-	p.Encode2(int16(nType))
+	p.Encode2(nType)
 	return p
 }
 
@@ -31,7 +31,7 @@ func NewCOutPacketByte(nType uint8) COutPacket {
 		SendBuff:            make([]byte, 0),
 		IsEncryptedByShanda: false,
 	}
-	p.Encode1(int8(nType))
+	p.Encode1(nType)
 	return p
 }
 
@@ -77,19 +77,29 @@ func (p *oPacket) EncodeBool(b bool) {
 }
 
 // Encode1 implements COutPacket
-func (p *oPacket) Encode1(n int8) {
-	p.SendBuff = append(p.SendBuff, byte(n))
+func (p *oPacket) Encode1(n uint8) {
+	p.SendBuff = append(p.SendBuff, n)
 	p.Offset++
 }
 
+// Encode1s implements COutPacket
+func (p *oPacket) Encode1s(n int8) {
+	p.Encode1(uint8(n))
+}
+
 // Encode2 implements COutPacket
-func (p *oPacket) Encode2(n int16) {
+func (p *oPacket) Encode2(n uint16) {
 	p.SendBuff = append(p.SendBuff, byte(n), byte(n>>8))
 	p.Offset += 2
 }
 
+// Encode2s implements COutPacket
+func (p *oPacket) Encode2s(n int16) {
+	p.Encode2(uint16(n))
+}
+
 // Encode4 implements COutPacket
-func (p *oPacket) Encode4(n int32) {
+func (p *oPacket) Encode4(n uint32) {
 	buf := make([]byte, 4)
 	for i := range 4 {
 		buf[i] = byte(n >> (i * 8))
@@ -98,14 +108,24 @@ func (p *oPacket) Encode4(n int32) {
 	p.Offset += 4
 }
 
+// Encode4s implements COutPacket
+func (p *oPacket) Encode4s(n int32) {
+	p.Encode4(uint32(n))
+}
+
 // Encode8 implements COutPacket
-func (p *oPacket) Encode8(n int64) {
+func (p *oPacket) Encode8(n uint64) {
 	buf := make([]byte, 8)
 	for i := range 8 {
 		buf[i] = byte(n >> (i * 8))
 	}
 	p.SendBuff = append(p.SendBuff, buf...)
 	p.Offset += 8
+}
+
+// Encode8s implements COutPacket
+func (p *oPacket) Encode8s(n int64) {
+	p.Encode8(uint64(n))
 }
 
 // EncodeFT implements COutPacket
@@ -120,14 +140,14 @@ func (p *oPacket) EncodeFT(t time.Time) {
 	ft := nano / 100
 	// Add the difference between the Unix and FileTime epochs
 	ft += fileTimeEpochDiff
-	p.Encode8(ft)
+	p.Encode8s(ft)
 }
 
 // EncodeStr implements COutPacket
 func (p *oPacket) EncodeStr(s string) {
 	buf := []byte(s) // ASCII Code
 	bufLen := len(buf)
-	p.Encode2(int16(bufLen))
+	p.Encode2(uint16(bufLen))
 	p.SendBuff = append(p.SendBuff, buf...)
 	p.Offset += bufLen
 }
@@ -135,7 +155,7 @@ func (p *oPacket) EncodeStr(s string) {
 // EncodeLocalStr implements COutPacket
 func (p *oPacket) EncodeLocalStr(s string) {
 	buf := GetLangBuf(s)
-	p.Encode2(int16(len(buf)))
+	p.Encode2(uint16(len(buf)))
 	p.EncodeBuffer(buf)
 }
 

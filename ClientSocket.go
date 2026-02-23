@@ -130,7 +130,7 @@ func (c *clientSocket) OnConnect() {
 	oPacket.EncodeStr(setting.GSetting.MSMinorVersion)
 	oPacket.EncodeBuffer(c.seqRcv[:])
 	oPacket.EncodeBuffer(c.seqSnd[:])
-	oPacket.Encode1(int8(setting.GSetting.MSRegion))
+	oPacket.Encode1(uint8(setting.GSetting.MSRegion))
 	c.sendBuff = oPacket.MakeBufferList(setting.GSetting.MSVersion, false, nil)
 	c.XORSend(c.sendBuff)
 	c.Flush()
@@ -148,7 +148,7 @@ func (c *clientSocket) OnAliveReq(LP_AliveReq uint16) {
 }
 
 // OnMigrateCommand implements CClientSocket.
-func (c *clientSocket) OnMigrateCommand(LP_MigrateCommand uint16, ip string, port int16) {
+func (c *clientSocket) OnMigrateCommand(LP_MigrateCommand uint16, ip string, port uint16) {
 	var oPacket COutPacket
 	if setting.GSetting.IsXORCipher {
 		oPacket = NewCOutPacketByte(uint8(LP_MigrateCommand))

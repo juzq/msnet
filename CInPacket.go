@@ -1,6 +1,7 @@
 package msnet
 
 import (
+	"encoding/binary"
 	"fmt"
 	"log/slog"
 
@@ -100,55 +101,63 @@ func (p *iPacket) DecodeBool() bool {
 }
 
 // Decode1 implements CInPacket.
-func (p *iPacket) Decode1() int8 {
+func (p *iPacket) Decode1() uint8 {
 	if p.GetRemain() <= 0 {
 		return 0
 	}
-	result := int8(p.RecvBuff[p.Offset])
+	result := p.RecvBuff[p.Offset]
 	p.Offset += 1
 	return result
 }
 
+// Decode1s implements CInPacket.
+func (p *iPacket) Decode1s() int8 {
+	return int8(p.Decode1())
+}
+
 // Decode2 implements CInPacket.
-func (p *iPacket) Decode2() int16 {
+func (p *iPacket) Decode2() uint16 {
 	if p.GetRemain() < 2 {
 		return 0
 	}
-	var result int16
-	for i := range 2 {
-		index := p.Offset + i
-		result |= int16(p.RecvBuff[index]) << (i * 8)
-	}
+	result := uint16(p.RecvBuff[p.Offset]) | uint16(p.RecvBuff[p.Offset+1])<<8
 	p.Offset += 2
 	return result
 }
 
+// Decode2s implements CInPacket.
+func (p *iPacket) Decode2s() int16 {
+	return int16(p.Decode2())
+}
+
 // Decode4 implements CInPacket.
-func (p *iPacket) Decode4() int32 {
+func (p *iPacket) Decode4() uint32 {
 	if p.GetRemain() < 4 {
 		return 0
 	}
-	var result int32
-	for i := range 4 {
-		index := p.Offset + i
-		result |= int32(p.RecvBuff[index]) << (i * 8)
-	}
+	result := binary.LittleEndian.Uint32(p.RecvBuff[p.Offset:])
 	p.Offset += 4
 	return result
 }
 
+// Decode4s implements CInPacket.
+func (p *iPacket) Decode4s() int32 {
+	return int32(p.Decode4())
+}
+
 // Decode8 implements CInPacket.
-func (p *iPacket) Decode8() int64 {
+func (p *iPacket) Decode8() uint64 {
 	if p.GetRemain() < 8 {
 		return 0
 	}
-	var result int64
-	for i := range 8 {
-		index := p.Offset + i
-		result |= int64(p.RecvBuff[index]) << (i * 8)
-	}
+	result := binary.LittleEndian.Uint64(p.RecvBuff[p.Offset:])
 	p.Offset += 8
 	return result
+}
+
+// Decode8s implements CInPacket.
+func (p *iPacket) Decode8s() int64 {
+	return int64(p.Decode8())
 }
 
 // DecodeFT implements CInPacket.
@@ -158,7 +167,7 @@ func (p *iPacket) DecodeFT() time.Time {
 	// FileTime epoch is January 1, 1601
 	// Unix epoch is January 1, 1970
 	// Calculate the difference between the two in nanoseconds
-	ft := p.Decode8()
+	ft := p.Decode8s()
 	nano := (ft - fileTimeEpochDiff) * 100
 	return time.Unix(0, nano)
 }

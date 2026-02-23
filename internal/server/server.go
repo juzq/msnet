@@ -85,7 +85,7 @@ func (s *server) ProcessPacket(cs msnet.CClientSocket, iPacket msnet.CInPacket) 
 	if setting.GSetting.SingleByteOpcode {
 		op = uint16(iPacket.Decode1())
 	} else {
-		op = uint16(iPacket.Decode2())
+		op = iPacket.Decode2()
 	}
 	switch op {
 	default:

@@ -46,7 +46,7 @@ type CClientSocket interface {
 	OnRead()
 	OnConnect()
 	OnAliveReq(LP_AliveReq uint16)
-	OnMigrateCommand(LP_MigrateCommand uint16, ip string, port int16)
+	OnMigrateCommand(LP_MigrateCommand uint16, ip string, port uint16)
 	SendPacket(oPacket COutPacket)
 	Flush()
 	OnError(err error)
@@ -69,10 +69,14 @@ type CInPacket interface {
 	GetOffset() int
 	GetLength() int
 	DecodeBool() bool
-	Decode1() int8
-	Decode2() int16
-	Decode4() int32
-	Decode8() int64
+	Decode1() uint8
+	Decode1s() int8
+	Decode2() uint16
+	Decode2s() int16
+	Decode4() uint32
+	Decode4s() int32
+	Decode8() uint64
+	Decode8s() int64
 	DecodeFT() time.Time
 	DecodeStr() string
 	DecodeLocalStr() string
@@ -89,10 +93,14 @@ type COutPacket interface {
 	GetOffset() int
 	GetLength() int
 	EncodeBool(b bool)
-	Encode1(n int8)
-	Encode2(n int16)
-	Encode4(n int32)
-	Encode8(n int64)
+	Encode1(n uint8)
+	Encode1s(n int8)
+	Encode2(n uint16)
+	Encode2s(n int16)
+	Encode4(n uint32)
+	Encode4s(n int32)
+	Encode8(n uint64)
+	Encode8s(n int64)
 	EncodeFT(t time.Time)
 	EncodeStr(s string)
 	EncodeLocalStr(s string)
