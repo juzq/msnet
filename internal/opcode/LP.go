@@ -275,238 +275,238 @@ const (
 	LP_SetDirectionMode             = 0xFD
 	LP_SetStandAloneMode            = 0xFE
 	LP_UserHireTutor                = 0xFF
-	LP_UserTutorMsg                 = 0x100
-	LP_IncCombo                     = 0x101
-	LP_UserRandomEmotion            = 0x102
-	LP_ResignQuestReturn            = 0x103
-	LP_PassMateName                 = 0x104
-	LP_SetRadioSchedule             = 0x105
-	LP_UserOpenSkillGuide           = 0x106
-	LP_UserNoticeMsg                = 0x107
-	LP_UserChatMsg                  = 0x108
-	LP_UserBuffzoneEffect           = 0x109
-	LP_UserGoToCommoditySN          = 0x10A
-	LP_UserDamageMeter              = 0x10B
-	LP_UserTimeBombAttack           = 0x10C
-	LP_UserPassiveMove              = 0x10D
-	LP_UserFollowCharacterFailed    = 0x10E
-	LP_UserRequestVengeance         = 0x10F
-	LP_UserRequestExJablin          = 0x110
-	LP_UserAskAPSPEvent             = 0x111
-	LP_QuestGuideResult             = 0x112
-	LP_UserDeliveryQuest            = 0x113
-	LP_SkillCooltimeSet             = 0x114
-	// LP_END_USERLOCAL
-	// LP_END_USERPOOL
-	// LP_BEGIN_SUMMONED
-	LP_SummonedEnterField = 0x116
-	LP_SummonedLeaveField = 0x117
-	LP_SummonedMove       = 0x118
-	LP_SummonedAttack     = 0x119
-	LP_SummonedSkill      = 0x11A
-	LP_SummonedHit        = 0x11B
-	// LP_END_SUMMONED
-	// LP_BEGIN_MOBPOOL
-	LP_MobEnterField       = 0x11C
-	LP_MobLeaveField       = 0x11D
-	LP_MobChangeController = 0x11E
-	// LP_BEGIN_MOB
-	LP_MobMove                    = 0x11F
-	LP_MobCtrlAck                 = 0x120
-	LP_MobCtrlHint                = 0x121
-	LP_MobStatSet                 = 0x122
-	LP_MobStatReset               = 0x123
-	LP_MobSuspendReset            = 0x124
-	LP_MobAffected                = 0x125
-	LP_MobDamaged                 = 0x126
-	LP_MobSpecialEffectBySkill    = 0x127
-	LP_MobHPChange                = 0x128
-	LP_MobCrcKeyChanged           = 0x129
-	LP_MobHPIndicator             = 0x12A
-	LP_MobCatchEffect             = 0x12B
-	LP_MobEffectByItem            = 0x12C
-	LP_MobSpeaking                = 0x12D
-	LP_MobChargeCount             = 0x12E
-	LP_MobSkillDelay              = 0x12F
-	LP_MobRequestResultEscortInfo = 0x130
-	LP_MobEscortStopEndPermmision = 0x131
-	LP_MobEscortStopSay           = 0x132
-	LP_MobEscortReturnBefore      = 0x133
-	LP_MobNextAttack              = 0x134
-	LP_MobAttackedByMob           = 0x135
-	// LP_END_MOB
-	// LP_END_MOBPOOL
-	// LP_BEGIN_NPCPOOL
-	LP_NpcEnterField       = 0x137
-	LP_NpcLeaveField       = 0x138
-	LP_NpcChangeController = 0x139
-	// LP_BEGIN_NPC
-	LP_NpcMove              = 0x13A
-	LP_NpcUpdateLimitedInfo = 0x13B
-	LP_NpcSpecialAction     = 0x13C
-	// LP_END_NPC
-	// LP_BEGIN_NPCTEMPLATE
-	LP_NpcSetScript = 0x13D
-	// LP_END_NPCTEMPLATE
-	// LP_END_NPCPOOL
-	// LP_BEGIN_EMPLOYEEPOOL
-	LP_EmployeeEnterField      = 0x13F
-	LP_EmployeeLeaveField      = 0x140
-	LP_EmployeeMiniRoomBalloon = 0x141
-	// LP_END_EMPLOYEEPOOL
-	// LP_BEGIN_DROPPOOL
-	LP_DropEnterField       = 0x142
-	LP_DropReleaseAllFreeze = 0x143
-	LP_DropLeaveField       = 0x144
-	// LP_END_DROPPOOL
-	// LP_BEGIN_MESSAGEBOXPOOL
-	LP_CreateMessgaeBoxFailed = 0x145
-	LP_MessageBoxEnterField   = 0x146
-	LP_MessageBoxLeaveField   = 0x147
-	// LP_END_MESSAGEBOXPOOL
-	// LP_BEGIN_AFFECTEDAREAPOOL
-	LP_AffectedAreaCreated = 0x148
-	LP_AffectedAreaRemoved = 0x149
-	// LP_END_AFFECTEDAREAPOOL
-	// LP_BEGIN_TOWNPORTALPOOL
-	LP_TownPortalCreated = 0x14A
-	LP_TownPortalRemoved = 0x14B
-	// LP_END_TOWNPORTALPOOL
-	// LP_BEGIN_OPENGATEPOOL
-	LP_OpenGateCreated = 0x14C
-	LP_OpenGateRemoved = 0x14D
-	// LP_END_OPENGATEPOOL
-	// LP_BEGIN_REACTORPOOL
-	LP_ReactorChangeState = 0x14E
-	LP_ReactorMove        = 0x14F
-	LP_ReactorEnterField  = 0x150
-	LP_ReactorLeaveField  = 0x151
-	// LP_END_REACTORPOOL
-	// LP_BEGIN_ETCFIELDOBJ
-	LP_SnowBallState          = 0x152
-	LP_SnowBallHit            = 0x153
-	LP_SnowBallMsg            = 0x154
-	LP_SnowBallTouch          = 0x155
-	LP_CoconutHit             = 0x156
-	LP_CoconutScore           = 0x157
-	LP_HealerMove             = 0x158
-	LP_PulleyStateChange      = 0x159
-	LP_MCarnivalEnter         = 0x15A
-	LP_MCarnivalPersonalCP    = 0x15B
-	LP_MCarnivalTeamCP        = 0x15C
-	LP_MCarnivalResultSuccess = 0x15D
-	LP_MCarnivalResultFail    = 0x15E
-	LP_MCarnivalDeath         = 0x15F
-	LP_MCarnivalMemberOut     = 0x160
-	LP_MCarnivalGameResult    = 0x161
-	LP_ArenaScore             = 0x162
-	LP_BattlefieldEnter       = 0x163
-	LP_BattlefieldScore       = 0x164
-	LP_BattlefieldTeamChanged = 0x165
-	LP_WitchtowerScore        = 0x166
-	LP_HontaleTimer           = 0x167
-	LP_ChaosZakumTimer        = 0x168
-	LP_HontailTimer           = 0x169
-	LP_ZakumTimer             = 0x16A
-	// LP_END_ETCFIELDOBJ
-	// LP_BEGIN_SCRIPT
-	LP_ScriptMessage = 0x16B
-	// LP_END_SCRIPT
-	// LP_BEGIN_SHOP
-	LP_OpenShopDlg = 0x16C
-	LP_ShopResult  = 0x16D
-	// LP_END_SHOP
-	// LP_BEGIN_ADMINSHOP
-	LP_AdminShopResult    = 0x16E
-	LP_AdminShopCommodity = 0x16F
-	// LP_END_ADMINSHOP
-	LP_TrunkResult = 0x170
-	// LP_BEGIN_STOREBANK
-	LP_StoreBankGetAllResult = 0x171
-	LP_StoreBankResult       = 0x172
-	// LP_END_STOREBANK
-	LP_RPSGame   = 0x173
-	LP_Messenger = 0x174
-	LP_MiniRoom  = 0x175
-	// LP_BEGIN_TOURNAMENT
-	LP_Tournament           = 0x176
-	LP_TournamentMatchTable = 0x177
-	LP_TournamentSetPrize   = 0x178
-	LP_TournamentNoticeUEW  = 0x179
-	LP_TournamentAvatarInfo = 0x17A
-	// LP_END_TOURNAMENT
-	// LP_BEGIN_WEDDING
-	LP_WeddingProgress   = 0x17B
-	LP_WeddingCremonyEnd = 0x17C
-	// LP_END_WEDDING
-	LP_Parcel = 0x17D
-	// LP_END_FIELD
-	// LP_BEGIN_CASHSHOP
-	LP_CashShopChargeParamResult                = 0x17E
-	LP_CashShopQueryCashResult                  = 0x17F
-	LP_CashShopCashItemResult                   = 0x180
-	LP_CashShopPurchaseExpChanged               = 0x181
-	LP_CashShopGiftMateInfoResult               = 0x182
-	LP_CashShopCheckDuplicatedIDResult          = 0x183
-	LP_CashShopCheckNameChangePossibleResult    = 0x184
-	LP_CashShopRegisterNewCharacterResult       = 0x185
-	LP_CashShopCheckTransferWorldPossibleResult = 0x186
-	LP_CashShopGachaponStampItemResult          = 0x187
-	LP_CashShopCashItemGachaponResult           = 0x188
-	LP_CashShopCashGachaponOpenResult           = 0x189
-	LP_ChangeMaplePointResult                   = 0x18A
-	LP_CashShopOneADay                          = 0x18B
-	LP_CashShopNoticeFreeCashItem               = 0x18C
-	LP_CashShopMemberShopResult                 = 0x18D
-	// LP_END_CASHSHOP
-	// LP_BEGIN_FUNCKEYMAPPED
-	LP_FuncKeyMappedInit    = 0x18E
-	LP_PetConsumeItemInit   = 0x18F
-	LP_PetConsumeMPItemInit = 0x190
-	// LP_END_FUNCKEYMAPPED
-	LP_CheckSSN2OnCreateNewCharacterResult = 0x191
-	LP_CheckSPWOnCreateNewCharacterResult  = 0x192
-	LP_FirstSSNOnCreateNewCharacterResult  = 0x193
-	// LP_BEGIN_MAPLETV
-	LP_MapleTVUpdateMessage     = 0x195
-	LP_MapleTVClearMessage      = 0x196
-	LP_MapleTVSendMessageResult = 0x197
-	LP_BroadSetFlashChangeEvent = 0x198
-	// LP_END_MAPLETV
-	// LP_BEGIN_ITC
-	LP_ITCChargeParamResult = 0x19A
-	LP_ITCQueryCashResult   = 0x19B
-	LP_ITCNormalItemResult  = 0x19C
-	// LP_END_ITC
-	// LP_BEGIN_CHARACTERSALE
-	LP_CheckDuplicatedIDResultInCS  = 0x19D
-	LP_CreateNewCharacterResultInCS = 0x19E
-	LP_CreateNewCharacterFailInCS   = 0x19F
-	LP_CharacterSale                = 0x1A0
-	// LP_END_CHARACTERSALE
-	// LP_BEGIN_GOLDHAMMER
-	LP_GoldHammere_s    = 0x1A1
-	LP_GoldHammerResult = 0x1A2
-	LP_GoldHammere_e    = 0x1A3
-	// LP_END_GOLDHAMMER
-	// LP_BEGIN_BATTLERECORD
-	LP_BattleRecord_s            = 0x1A4
-	LP_BattleRecordDotDamageInfo = 0x1A5
-	LP_BattleRecordRequestResult = 0x1A6
-	LP_BattleRecord_e            = 0x1A7
-	// LP_END_BATTLERECORD
-	// LP_BEGIN_ITEMUPGRADE
-	LP_ItemUpgrade_s     = 0x1A8
-	LP_ItemUpgradeResult = 0x1A9
-	LP_ItemUpgradeFail   = 0x1AA
-	LP_ItemUpgrade_e     = 0x1AB
-	// LP_END_ITEMUPGRADE
-	// LP_BEGIN_VEGA
-	LP_Vega_s     = 0x1AC
-	LP_VegaResult = 0x1AD
-	LP_VegaFail   = 0x1AE
-	LP_Vega_e     = 0x1AF
-	// LP_END_VEGA
-	LP_LogoutGift = 0x1B0
-	LP_NO         = 0x1B1
+	// LP_UserTutorMsg                 = 0x100
+	// LP_IncCombo                     = 0x101
+	// LP_UserRandomEmotion            = 0x102
+	// LP_ResignQuestReturn            = 0x103
+	// LP_PassMateName                 = 0x104
+	// LP_SetRadioSchedule             = 0x105
+	// LP_UserOpenSkillGuide           = 0x106
+	// LP_UserNoticeMsg                = 0x107
+	// LP_UserChatMsg                  = 0x108
+	// LP_UserBuffzoneEffect           = 0x109
+	// LP_UserGoToCommoditySN          = 0x10A
+	// LP_UserDamageMeter              = 0x10B
+	// LP_UserTimeBombAttack           = 0x10C
+	// LP_UserPassiveMove              = 0x10D
+	// LP_UserFollowCharacterFailed    = 0x10E
+	// LP_UserRequestVengeance         = 0x10F
+	// LP_UserRequestExJablin          = 0x110
+	// LP_UserAskAPSPEvent             = 0x111
+	// LP_QuestGuideResult             = 0x112
+	// LP_UserDeliveryQuest            = 0x113
+	// LP_SkillCooltimeSet             = 0x114
+	// // LP_END_USERLOCAL
+	// // LP_END_USERPOOL
+	// // LP_BEGIN_SUMMONED
+	// LP_SummonedEnterField = 0x116
+	// LP_SummonedLeaveField = 0x117
+	// LP_SummonedMove       = 0x118
+	// LP_SummonedAttack     = 0x119
+	// LP_SummonedSkill      = 0x11A
+	// LP_SummonedHit        = 0x11B
+	// // LP_END_SUMMONED
+	// // LP_BEGIN_MOBPOOL
+	// LP_MobEnterField       = 0x11C
+	// LP_MobLeaveField       = 0x11D
+	// LP_MobChangeController = 0x11E
+	// // LP_BEGIN_MOB
+	// LP_MobMove                    = 0x11F
+	// LP_MobCtrlAck                 = 0x120
+	// LP_MobCtrlHint                = 0x121
+	// LP_MobStatSet                 = 0x122
+	// LP_MobStatReset               = 0x123
+	// LP_MobSuspendReset            = 0x124
+	// LP_MobAffected                = 0x125
+	// LP_MobDamaged                 = 0x126
+	// LP_MobSpecialEffectBySkill    = 0x127
+	// LP_MobHPChange                = 0x128
+	// LP_MobCrcKeyChanged           = 0x129
+	// LP_MobHPIndicator             = 0x12A
+	// LP_MobCatchEffect             = 0x12B
+	// LP_MobEffectByItem            = 0x12C
+	// LP_MobSpeaking                = 0x12D
+	// LP_MobChargeCount             = 0x12E
+	// LP_MobSkillDelay              = 0x12F
+	// LP_MobRequestResultEscortInfo = 0x130
+	// LP_MobEscortStopEndPermmision = 0x131
+	// LP_MobEscortStopSay           = 0x132
+	// LP_MobEscortReturnBefore      = 0x133
+	// LP_MobNextAttack              = 0x134
+	// LP_MobAttackedByMob           = 0x135
+	// // LP_END_MOB
+	// // LP_END_MOBPOOL
+	// // LP_BEGIN_NPCPOOL
+	// LP_NpcEnterField       = 0x137
+	// LP_NpcLeaveField       = 0x138
+	// LP_NpcChangeController = 0x139
+	// // LP_BEGIN_NPC
+	// LP_NpcMove              = 0x13A
+	// LP_NpcUpdateLimitedInfo = 0x13B
+	// LP_NpcSpecialAction     = 0x13C
+	// // LP_END_NPC
+	// // LP_BEGIN_NPCTEMPLATE
+	// LP_NpcSetScript = 0x13D
+	// // LP_END_NPCTEMPLATE
+	// // LP_END_NPCPOOL
+	// // LP_BEGIN_EMPLOYEEPOOL
+	// LP_EmployeeEnterField      = 0x13F
+	// LP_EmployeeLeaveField      = 0x140
+	// LP_EmployeeMiniRoomBalloon = 0x141
+	// // LP_END_EMPLOYEEPOOL
+	// // LP_BEGIN_DROPPOOL
+	// LP_DropEnterField       = 0x142
+	// LP_DropReleaseAllFreeze = 0x143
+	// LP_DropLeaveField       = 0x144
+	// // LP_END_DROPPOOL
+	// // LP_BEGIN_MESSAGEBOXPOOL
+	// LP_CreateMessgaeBoxFailed = 0x145
+	// LP_MessageBoxEnterField   = 0x146
+	// LP_MessageBoxLeaveField   = 0x147
+	// // LP_END_MESSAGEBOXPOOL
+	// // LP_BEGIN_AFFECTEDAREAPOOL
+	// LP_AffectedAreaCreated = 0x148
+	// LP_AffectedAreaRemoved = 0x149
+	// // LP_END_AFFECTEDAREAPOOL
+	// // LP_BEGIN_TOWNPORTALPOOL
+	// LP_TownPortalCreated = 0x14A
+	// LP_TownPortalRemoved = 0x14B
+	// // LP_END_TOWNPORTALPOOL
+	// // LP_BEGIN_OPENGATEPOOL
+	// LP_OpenGateCreated = 0x14C
+	// LP_OpenGateRemoved = 0x14D
+	// // LP_END_OPENGATEPOOL
+	// // LP_BEGIN_REACTORPOOL
+	// LP_ReactorChangeState = 0x14E
+	// LP_ReactorMove        = 0x14F
+	// LP_ReactorEnterField  = 0x150
+	// LP_ReactorLeaveField  = 0x151
+	// // LP_END_REACTORPOOL
+	// // LP_BEGIN_ETCFIELDOBJ
+	// LP_SnowBallState          = 0x152
+	// LP_SnowBallHit            = 0x153
+	// LP_SnowBallMsg            = 0x154
+	// LP_SnowBallTouch          = 0x155
+	// LP_CoconutHit             = 0x156
+	// LP_CoconutScore           = 0x157
+	// LP_HealerMove             = 0x158
+	// LP_PulleyStateChange      = 0x159
+	// LP_MCarnivalEnter         = 0x15A
+	// LP_MCarnivalPersonalCP    = 0x15B
+	// LP_MCarnivalTeamCP        = 0x15C
+	// LP_MCarnivalResultSuccess = 0x15D
+	// LP_MCarnivalResultFail    = 0x15E
+	// LP_MCarnivalDeath         = 0x15F
+	// LP_MCarnivalMemberOut     = 0x160
+	// LP_MCarnivalGameResult    = 0x161
+	// LP_ArenaScore             = 0x162
+	// LP_BattlefieldEnter       = 0x163
+	// LP_BattlefieldScore       = 0x164
+	// LP_BattlefieldTeamChanged = 0x165
+	// LP_WitchtowerScore        = 0x166
+	// LP_HontaleTimer           = 0x167
+	// LP_ChaosZakumTimer        = 0x168
+	// LP_HontailTimer           = 0x169
+	// LP_ZakumTimer             = 0x16A
+	// // LP_END_ETCFIELDOBJ
+	// // LP_BEGIN_SCRIPT
+	// LP_ScriptMessage = 0x16B
+	// // LP_END_SCRIPT
+	// // LP_BEGIN_SHOP
+	// LP_OpenShopDlg = 0x16C
+	// LP_ShopResult  = 0x16D
+	// // LP_END_SHOP
+	// // LP_BEGIN_ADMINSHOP
+	// LP_AdminShopResult    = 0x16E
+	// LP_AdminShopCommodity = 0x16F
+	// // LP_END_ADMINSHOP
+	// LP_TrunkResult = 0x170
+	// // LP_BEGIN_STOREBANK
+	// LP_StoreBankGetAllResult = 0x171
+	// LP_StoreBankResult       = 0x172
+	// // LP_END_STOREBANK
+	// LP_RPSGame   = 0x173
+	// LP_Messenger = 0x174
+	// LP_MiniRoom  = 0x175
+	// // LP_BEGIN_TOURNAMENT
+	// LP_Tournament           = 0x176
+	// LP_TournamentMatchTable = 0x177
+	// LP_TournamentSetPrize   = 0x178
+	// LP_TournamentNoticeUEW  = 0x179
+	// LP_TournamentAvatarInfo = 0x17A
+	// // LP_END_TOURNAMENT
+	// // LP_BEGIN_WEDDING
+	// LP_WeddingProgress   = 0x17B
+	// LP_WeddingCremonyEnd = 0x17C
+	// // LP_END_WEDDING
+	// LP_Parcel = 0x17D
+	// // LP_END_FIELD
+	// // LP_BEGIN_CASHSHOP
+	// LP_CashShopChargeParamResult                = 0x17E
+	// LP_CashShopQueryCashResult                  = 0x17F
+	// LP_CashShopCashItemResult                   = 0x180
+	// LP_CashShopPurchaseExpChanged               = 0x181
+	// LP_CashShopGiftMateInfoResult               = 0x182
+	// LP_CashShopCheckDuplicatedIDResult          = 0x183
+	// LP_CashShopCheckNameChangePossibleResult    = 0x184
+	// LP_CashShopRegisterNewCharacterResult       = 0x185
+	// LP_CashShopCheckTransferWorldPossibleResult = 0x186
+	// LP_CashShopGachaponStampItemResult          = 0x187
+	// LP_CashShopCashItemGachaponResult           = 0x188
+	// LP_CashShopCashGachaponOpenResult           = 0x189
+	// LP_ChangeMaplePointResult                   = 0x18A
+	// LP_CashShopOneADay                          = 0x18B
+	// LP_CashShopNoticeFreeCashItem               = 0x18C
+	// LP_CashShopMemberShopResult                 = 0x18D
+	// // LP_END_CASHSHOP
+	// // LP_BEGIN_FUNCKEYMAPPED
+	// LP_FuncKeyMappedInit    = 0x18E
+	// LP_PetConsumeItemInit   = 0x18F
+	// LP_PetConsumeMPItemInit = 0x190
+	// // LP_END_FUNCKEYMAPPED
+	// LP_CheckSSN2OnCreateNewCharacterResult = 0x191
+	// LP_CheckSPWOnCreateNewCharacterResult  = 0x192
+	// LP_FirstSSNOnCreateNewCharacterResult  = 0x193
+	// // LP_BEGIN_MAPLETV
+	// LP_MapleTVUpdateMessage     = 0x195
+	// LP_MapleTVClearMessage      = 0x196
+	// LP_MapleTVSendMessageResult = 0x197
+	// LP_BroadSetFlashChangeEvent = 0x198
+	// // LP_END_MAPLETV
+	// // LP_BEGIN_ITC
+	// LP_ITCChargeParamResult = 0x19A
+	// LP_ITCQueryCashResult   = 0x19B
+	// LP_ITCNormalItemResult  = 0x19C
+	// // LP_END_ITC
+	// // LP_BEGIN_CHARACTERSALE
+	// LP_CheckDuplicatedIDResultInCS  = 0x19D
+	// LP_CreateNewCharacterResultInCS = 0x19E
+	// LP_CreateNewCharacterFailInCS   = 0x19F
+	// LP_CharacterSale                = 0x1A0
+	// // LP_END_CHARACTERSALE
+	// // LP_BEGIN_GOLDHAMMER
+	// LP_GoldHammere_s    = 0x1A1
+	// LP_GoldHammerResult = 0x1A2
+	// LP_GoldHammere_e    = 0x1A3
+	// // LP_END_GOLDHAMMER
+	// // LP_BEGIN_BATTLERECORD
+	// LP_BattleRecord_s            = 0x1A4
+	// LP_BattleRecordDotDamageInfo = 0x1A5
+	// LP_BattleRecordRequestResult = 0x1A6
+	// LP_BattleRecord_e            = 0x1A7
+	// // LP_END_BATTLERECORD
+	// // LP_BEGIN_ITEMUPGRADE
+	// LP_ItemUpgrade_s     = 0x1A8
+	// LP_ItemUpgradeResult = 0x1A9
+	// LP_ItemUpgradeFail   = 0x1AA
+	// LP_ItemUpgrade_e     = 0x1AB
+	// // LP_END_ITEMUPGRADE
+	// // LP_BEGIN_VEGA
+	// LP_Vega_s     = 0x1AC
+	// LP_VegaResult = 0x1AD
+	// LP_VegaFail   = 0x1AE
+	// LP_Vega_e     = 0x1AF
+	// // LP_END_VEGA
+	// LP_LogoutGift = 0x1B0
+	// LP_NO         = 0x1B1
 )
