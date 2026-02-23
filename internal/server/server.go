@@ -11,13 +11,23 @@ import (
 )
 
 type server struct {
-	addr string
-	lis  net.Listener
+	addr    string
+	lis     net.Listener
+	handler Handler // packet handle
 }
 
 func NewServer(addr string) *server {
 	s := &server{
 		addr: addr,
+	}
+	return s
+}
+
+// new server with handler
+func NewServerHandle(addr string, h Handler) *server {
+	s := &server{
+		addr:    addr,
+		handler: h,
 	}
 	return s
 }
@@ -48,6 +58,7 @@ func (s *server) Run() {
 		cs.SetID(idCount)
 		idCount++
 	}
+	slog.Info("Server stopped.")
 }
 
 func (s *server) Shutdown() {
@@ -87,10 +98,10 @@ func (s *server) ProcessPacket(cs msnet.CClientSocket, iPacket msnet.CInPacket) 
 	} else {
 		op = iPacket.Decode2()
 	}
-	switch op {
-	default:
-		slog.Info("Unprocessed CInPacket", "opcode", fmt.Sprintf("0x%X", op))
+	if s.handler != nil && s.handler.Handle(cs, iPacket) {
+		return
 	}
+	slog.Info("Unprocessed CInPacket", "opcode", fmt.Sprintf("0x%X", op))
 }
 
 // SocketClose implements msnet.CClientSocketDelegate.
