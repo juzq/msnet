@@ -8,6 +8,7 @@ import (
 
 	"github.com/zhyonc/msnet/enum"
 	"github.com/zhyonc/msnet/internal/crypt"
+	"github.com/zhyonc/msnet/setting"
 )
 
 type oPacket struct {
@@ -164,7 +165,7 @@ func (p *oPacket) MakeBufferList(uSeqBase uint16, bEnc bool, dwKey []byte) []byt
 	if bEnc {
 		bufferList = make([]byte, headerLen+dataLen)
 		copy(bufferList[headerLen:], p.SendBuff)
-		if gSetting.IsXORCipher {
+		if setting.GSetting.IsXORCipher {
 			// Encrypt packet header
 			uSeqBaseN := ^uSeqBase
 			HIWORD := binary.LittleEndian.Uint16(dwKey[2:4])
@@ -184,15 +185,16 @@ func (p *oPacket) MakeBufferList(uSeqBase uint16, bEnc bool, dwKey []byte) []byt
 			binary.LittleEndian.PutUint16(bufferList, uRawSeq)
 			binary.LittleEndian.PutUint16(bufferList[2:4], dataLen)
 			// IsEncryptedByShanda
-			if gSetting.MSRegion > enum.TMS || (gSetting.MSRegion == enum.CMS && gSetting.MSVersion < 86) {
+			region := setting.GSetting.MSRegion
+			if region > enum.TMS || (region == enum.CMS && setting.GSetting.MSVersion < 86) {
 				(*crypt.CIOBufferManipulator).En(nil, bufferList[headerLen:])
 				p.IsEncryptedByShanda = true
 			}
 			var aesKey [32]byte
-			if gSetting.IsCycleAESKey {
+			if setting.GSetting.IsCycleAESKey {
 				aesKey = crypt.CycleAESKeys[uSeqBase%20]
 			} else {
-				aesKey = gSetting.AESKeyEncrypt
+				aesKey = setting.GSetting.AESKeyEncrypt
 			}
 			// Encrypt packet data
 			for i := 4; i < len(bufferList); i += maxDataLength {

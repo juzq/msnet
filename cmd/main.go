@@ -12,6 +12,7 @@ import (
 	"github.com/zhyonc/msnet"
 	"github.com/zhyonc/msnet/enum"
 	"github.com/zhyonc/msnet/internal/server"
+	"github.com/zhyonc/msnet/setting"
 )
 
 const (
@@ -23,7 +24,7 @@ const (
 
 func main() {
 	// Installation
-	msnet.New(&msnet.Setting{
+	msnet.New(&setting.Setting{
 		MSRegion:       enum.GMS,
 		MSVersion:      95,
 		MSMinorVersion: "1",

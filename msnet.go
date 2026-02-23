@@ -5,6 +5,7 @@ import (
 
 	"github.com/zhyonc/msnet/enum"
 	"github.com/zhyonc/msnet/internal/crypt"
+	"github.com/zhyonc/msnet/setting"
 
 	"golang.org/x/text/encoding"
 	"golang.org/x/text/encoding/simplifiedchinese"
@@ -17,15 +18,11 @@ const (
 	fileTimeEpochDiff int64 = 116444736000000000 // FileTime epoch is January 1, 1601
 )
 
-var (
-	gSetting *Setting
-)
-
-func New(setting *Setting) {
+func New(s *setting.Setting) {
 	// Setting
-	gSetting = setting
+	setting.GSetting = s
 	// Language coder
-	switch gSetting.MSRegion {
+	switch setting.GSetting.MSRegion {
 	case enum.CMS:
 		langEncoder = simplifiedchinese.GBK.NewEncoder()
 		langDecoder = simplifiedchinese.GBK.NewDecoder()
@@ -37,7 +34,7 @@ func New(setting *Setting) {
 		langDecoder = encoding.Nop.NewDecoder()
 	}
 	// AESInitType
-	crypt.AESInitType = gSetting.AESInitType
+	crypt.AESInitType = setting.GSetting.AESInitType
 }
 
 type CClientSocket interface {

@@ -8,6 +8,7 @@ import (
 	"net"
 
 	"github.com/zhyonc/msnet/internal/crypt"
+	"github.com/zhyonc/msnet/setting"
 )
 
 type clientSocket struct {
@@ -23,7 +24,7 @@ type clientSocket struct {
 }
 
 func NewCClientSocket(delegate CClientSocketDelegate, conn net.Conn, rcvIV []byte, sndIV []byte) CClientSocket {
-	if gSetting == nil {
+	if setting.GSetting == nil {
 		panic("Please use msnet.New(setting) to install package")
 	}
 	c := &clientSocket{
@@ -63,22 +64,22 @@ func (c *clientSocket) GetAddr() string {
 // XORRecv implements CClientSocket.
 func (c *clientSocket) XORRecv(buf []byte) {
 	// The server must use the same XOR key to recover the original packet
-	if gSetting.RecvXOR == 0 {
+	if setting.GSetting.RecvXOR == 0 {
 		return
 	}
 	for i := range buf {
-		buf[i] ^= gSetting.RecvXOR
+		buf[i] ^= setting.GSetting.RecvXOR
 	}
 }
 
 // XORSend implements CClientSocket.
 func (c *clientSocket) XORSend(buf []byte) {
 	// The client must use the same XOR key to recover the original packet
-	if gSetting.SendXOR == 0 {
+	if setting.GSetting.SendXOR == 0 {
 		return
 	}
 	for i := range buf {
-		buf[i] ^= gSetting.SendXOR
+		buf[i] ^= setting.GSetting.SendXOR
 	}
 }
 
@@ -100,7 +101,7 @@ func (c *clientSocket) OnRead() {
 			// Decode packet header
 			c.packetRecv.AppendBuffer(c.recvBuff, true)
 			HIWORD := binary.LittleEndian.Uint16(c.seqRcv[2:4])
-			if c.packetRecv.RawSeq^HIWORD != gSetting.MSVersion {
+			if c.packetRecv.RawSeq^HIWORD != setting.GSetting.MSVersion {
 				c.OnError(fmt.Errorf("failed to decode packet header"))
 				return
 			}
@@ -110,7 +111,7 @@ func (c *clientSocket) OnRead() {
 			iPacket := NewCInPacket(c.recvBuff)
 			iPacket.DecryptData(c.seqRcv[:]) // Decrypt using AES OFB mode
 			// Refresh m_uSeqRcv value
-			if gSetting.IsXORCipher {
+			if setting.GSetting.IsXORCipher {
 				(*crypt.XORCipher).Shuffle(nil, c.seqRcv[:])
 			} else {
 				(*crypt.CIGCipher).InnoHash(nil, c.seqRcv[:])
@@ -126,11 +127,11 @@ func (c *clientSocket) OnRead() {
 // OnConnect implements CClientSocket.
 func (c *clientSocket) OnConnect() {
 	oPacket := NewCOutPacket(0)
-	oPacket.EncodeStr(gSetting.MSMinorVersion)
+	oPacket.EncodeStr(setting.GSetting.MSMinorVersion)
 	oPacket.EncodeBuffer(c.seqRcv[:])
 	oPacket.EncodeBuffer(c.seqSnd[:])
-	oPacket.Encode1(int8(gSetting.MSRegion))
-	c.sendBuff = oPacket.MakeBufferList(gSetting.MSVersion, false, nil)
+	oPacket.Encode1(int8(setting.GSetting.MSRegion))
+	c.sendBuff = oPacket.MakeBufferList(setting.GSetting.MSVersion, false, nil)
 	c.XORSend(c.sendBuff)
 	c.Flush()
 }
@@ -138,7 +139,7 @@ func (c *clientSocket) OnConnect() {
 // OnAliveReq implements CClientSocket.
 func (c *clientSocket) OnAliveReq(LP_AliveReq uint16) {
 	var oPacket COutPacket
-	if gSetting.IsXORCipher {
+	if setting.GSetting.IsXORCipher {
 		oPacket = NewCOutPacketByte(uint8(LP_AliveReq))
 	} else {
 		oPacket = NewCOutPacket(LP_AliveReq)
@@ -149,7 +150,7 @@ func (c *clientSocket) OnAliveReq(LP_AliveReq uint16) {
 // OnMigrateCommand implements CClientSocket.
 func (c *clientSocket) OnMigrateCommand(LP_MigrateCommand uint16, ip string, port int16) {
 	var oPacket COutPacket
-	if gSetting.IsXORCipher {
+	if setting.GSetting.IsXORCipher {
 		oPacket = NewCOutPacketByte(uint8(LP_MigrateCommand))
 	} else {
 		oPacket = NewCOutPacket(LP_MigrateCommand)
@@ -169,9 +170,9 @@ func (c *clientSocket) OnMigrateCommand(LP_MigrateCommand uint16, ip string, por
 // SendPacket implements CClientSocket.
 func (c *clientSocket) SendPacket(oPacket COutPacket) {
 	c.delegate.DebugOutPacketLog(c.id, oPacket)
-	c.sendBuff = oPacket.MakeBufferList(gSetting.MSVersion, true, c.seqSnd[:])
+	c.sendBuff = oPacket.MakeBufferList(setting.GSetting.MSVersion, true, c.seqSnd[:])
 	// Refresh SeqSnd value
-	if gSetting.IsXORCipher {
+	if setting.GSetting.IsXORCipher {
 		(*crypt.XORCipher).Shuffle(nil, c.seqSnd[:])
 	} else {
 		(*crypt.CIGCipher).InnoHash(nil, c.seqSnd[:])

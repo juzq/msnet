@@ -6,6 +6,7 @@ import (
 
 	"github.com/zhyonc/msnet/enum"
 	"github.com/zhyonc/msnet/internal/crypt"
+	"github.com/zhyonc/msnet/setting"
 
 	"strings"
 	"time"
@@ -34,7 +35,7 @@ func (p *iPacket) AppendBuffer(pBuff []byte, bEnc bool) {
 	p.Offset = 0
 	p.RawSeq = uint16(p.Decode2())
 	temp := uint16(p.Decode2())
-	if !gSetting.IsXORCipher && bEnc {
+	if !setting.GSetting.IsXORCipher && bEnc {
 		temp ^= p.RawSeq
 	}
 	p.DataLen = int(temp)
@@ -47,17 +48,17 @@ func (p *iPacket) DecryptData(dwKey []byte) {
 		return
 	}
 
-	if gSetting.IsXORCipher {
+	if setting.GSetting.IsXORCipher {
 		(*crypt.XORCipher).Decrypt(nil, p.RecvBuff, dwKey)
 		return
 	}
 
-	if gSetting.IsCycleAESKey {
-		(*crypt.CAESCipher).Decrypt(nil, crypt.CycleAESKeys[gSetting.MSVersion%20], p.RecvBuff, dwKey)
+	if setting.GSetting.IsCycleAESKey {
+		(*crypt.CAESCipher).Decrypt(nil, crypt.CycleAESKeys[setting.GSetting.MSVersion%20], p.RecvBuff, dwKey)
 	} else {
-		(*crypt.CAESCipher).Decrypt(nil, gSetting.AESKeyDecrypt, p.RecvBuff, dwKey)
+		(*crypt.CAESCipher).Decrypt(nil, setting.GSetting.AESKeyDecrypt, p.RecvBuff, dwKey)
 	}
-	if gSetting.MSRegion > enum.TMS || (gSetting.MSRegion == enum.CMS && gSetting.MSVersion < 86) {
+	if setting.GSetting.MSRegion > enum.TMS || (setting.GSetting.MSRegion == enum.CMS && setting.GSetting.MSVersion < 86) {
 		(*crypt.CIOBufferManipulator).De(nil, p.RecvBuff)
 	}
 }
