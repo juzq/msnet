@@ -3,8 +3,8 @@ package msnet
 import (
 	"time"
 
-	"github.com/zhyonc/msnet/crypt"
 	"github.com/zhyonc/msnet/enum"
+	"github.com/zhyonc/msnet/internal/crypt"
 	"github.com/zhyonc/msnet/setting"
 
 	"golang.org/x/text/encoding"

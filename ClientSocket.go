@@ -7,7 +7,7 @@ import (
 	"log/slog"
 	"net"
 
-	"github.com/zhyonc/msnet/crypt"
+	"github.com/zhyonc/msnet/internal/crypt"
 	"github.com/zhyonc/msnet/setting"
 )
 
