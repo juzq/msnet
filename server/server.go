@@ -6,7 +6,6 @@ import (
 	"net"
 
 	"github.com/zhyonc/msnet"
-	"github.com/zhyonc/msnet/internal/opcode"
 	"github.com/zhyonc/msnet/setting"
 )
 
@@ -72,10 +71,8 @@ func (s *server) DebugInPacketLog(id int32, iPacket msnet.CInPacket) {
 	if setting.GSetting.SingleByteOpcode {
 		key = uint16(iPacket.GetTypeByte())
 	}
-	_, ok := opcode.NotLogCP[key]
-	if !ok {
-		slog.Info("[CInPacket]", "id", id, "length", iPacket.GetLength(), "opcode", opcode.CPMap[key], "data", iPacket.DumpString(-1))
-	}
+	// TODO filter opcode
+	slog.Info("[CInPacket]", "id", id, "length", iPacket.GetLength(), "opcode", fmt.Sprintf("%X", key), "data", iPacket.DumpString(-1))
 }
 
 // DebugOutPacketLog implements msnet.CClientSocketDelegate.
@@ -84,10 +81,8 @@ func (s *server) DebugOutPacketLog(id int32, oPacket msnet.COutPacket) {
 	if setting.GSetting.SingleByteOpcode {
 		key = uint16(oPacket.GetTypeByte())
 	}
-	_, ok := opcode.NotLogLP[key]
-	if !ok {
-		slog.Info("[COutPacket]", "id", id, "length", oPacket.GetLength(), "opcode", opcode.LPMap[key], "data", oPacket.DumpString(-1))
-	}
+	// TODO filter opcode
+	slog.Info("[COutPacket]", "id", id, "length", oPacket.GetLength(), "opcode", fmt.Sprintf("%X", key), "data", oPacket.DumpString(-1))
 }
 
 // ProcessPacket implements msnet.CClientSocketDelegate.
