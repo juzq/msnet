@@ -128,6 +128,29 @@ func (p *oPacket) Encode8s(n int64) {
 	p.Encode8(uint64(n))
 }
 
+func (p *oPacket) Encode8Reversed(n uint64) {
+	buf := make([]byte, 8)
+
+	// 先写高32位的字节（但保持高32位内部是小端序）
+	buf[0] = byte(n >> 32 & 0xFF) // 第5字节
+	buf[1] = byte(n >> 40 & 0xFF) // 第6字节
+	buf[2] = byte(n >> 48 & 0xFF) // 第7字节
+	buf[3] = byte(n >> 56 & 0xFF) // 第8字节
+
+	// 再写低32位的字节（低32位内部也是小端序）
+	buf[4] = byte(n & 0xFF)       // 第1字节
+	buf[5] = byte(n >> 8 & 0xFF)  // 第2字节
+	buf[6] = byte(n >> 16 & 0xFF) // 第3字节
+	buf[7] = byte(n >> 24 & 0xFF) // 第4字节
+
+	p.SendBuff = append(p.SendBuff, buf...)
+	p.Offset += 8
+}
+
+func (p *oPacket) Encode8sReversed(n int64) {
+	p.Encode8Reversed(uint64(n))
+}
+
 // EncodeFT implements COutPacket
 func (p *oPacket) EncodeFT(t time.Time) {
 	// Convert the time.Time value to nanoseconds since the Unix epoch
@@ -141,6 +164,21 @@ func (p *oPacket) EncodeFT(t time.Time) {
 	// Add the difference between the Unix and FileTime epochs
 	ft += fileTimeEpochDiff
 	p.Encode8s(ft)
+}
+
+// EncodeFT implements COutPacket
+func (p *oPacket) EncodeFTReversed(t time.Time) {
+	// Convert the time.Time value to nanoseconds since the Unix epoch
+	nano := t.UnixNano() // nano=currentTime-8hours
+	// Add the local time zone offset
+	_, offset := t.Zone()
+	offsetNano := int64(offset) * int64(time.Second)
+	nano += offsetNano
+	// Convert from nanoseconds to 100-nanosecond intervals (the unit used by FileTime)
+	ft := nano / 100
+	// Add the difference between the Unix and FileTime epochs
+	ft += fileTimeEpochDiff
+	p.Encode8sReversed(ft)
 }
 
 // EncodeStr implements COutPacket
