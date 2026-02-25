@@ -102,6 +102,7 @@ type COutPacket interface {
 	Encode8(n uint64)
 	Encode8s(n int64)
 	EncodeFT(t time.Time)
+	EncodeFTReversed(t time.Time)
 	EncodeStr(s string)
 	EncodeLocalStr(s string)
 	EncodeLocalName(s string)
