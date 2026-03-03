@@ -105,7 +105,7 @@ type COutPacket interface {
 	EncodeFTReversed(t time.Time)
 	EncodeStr(s string)
 	EncodeLocalStr(s string)
-	EncodeLocalName(s string)
+	EncodeLocalName(s string, length int)
 	EncodeBuffer(buf []byte)
 	MakeBufferList(uSeqBase uint16, bEnc bool, dwKey []byte) []byte
 	DumpString(nSize int) string

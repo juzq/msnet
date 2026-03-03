@@ -72,7 +72,7 @@ func (s *server) DebugInPacketLog(id int32, iPacket msnet.CInPacket) {
 		key = uint16(iPacket.GetTypeByte())
 	}
 	// TODO filter opcode
-	slog.Info("[CInPacket]", "id", id, "length", iPacket.GetLength(), "opcode", fmt.Sprintf("%X", key), "data", iPacket.DumpString(-1))
+	slog.Info("[CInPacket]", "id", id, "length", iPacket.GetLength(), "opcode", fmt.Sprintf("0x%X", key), "data", iPacket.DumpString(-1))
 }
 
 // DebugOutPacketLog implements msnet.CClientSocketDelegate.
@@ -82,7 +82,7 @@ func (s *server) DebugOutPacketLog(id int32, oPacket msnet.COutPacket) {
 		key = uint16(oPacket.GetTypeByte())
 	}
 	// TODO filter opcode
-	slog.Info("[COutPacket]", "id", id, "length", oPacket.GetLength(), "opcode", fmt.Sprintf("%X", key), "data", oPacket.DumpString(-1))
+	slog.Info("[COutPacket]", "id", id, "length", oPacket.GetLength(), "opcode", fmt.Sprintf("0x%X", key), "data", oPacket.DumpString(-1))
 }
 
 // ProcessPacket implements msnet.CClientSocketDelegate.

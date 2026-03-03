@@ -198,8 +198,8 @@ func (p *oPacket) EncodeLocalStr(s string) {
 }
 
 // EncodeLocalName implements COutPacket
-func (p *oPacket) EncodeLocalName(s string) {
-	localeBuf := make([]byte, 13)
+func (p *oPacket) EncodeLocalName(s string, length int) {
+	localeBuf := make([]byte, length)
 	buf := GetLangBuf(s)
 	bufLen := len(buf)
 	if bufLen > 0 {
